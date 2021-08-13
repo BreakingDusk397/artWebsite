@@ -1,0 +1,57 @@
+<div class="container">
+<%= form_for @contact, url: contact_index_path, remote: true do |f| %>
+    <div class="row g-3">
+    <div class="col-md-6">
+        <%= f.label :name %>
+        <%= f.text_field  :name, required: true, class: "contact-form-text-area" %>
+    </div>
+    <div class="col-md-6">
+        <%= f.label :email %>
+        <%= f.text_field :email, required: true, class: "contact-form-text-area" %>
+        </div>
+      <%= f.label :message %>
+      <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area",
+                        placeholder: "Send me a message"%>
+
+      <div class= "hidden">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+      
+
+      <%= f.submit 'Send Message', class: 'btn btn-primary' %>
+    </div>
+    </div>
+  <% end %>
+  <div class="col-md-6" id="flash-message">
+    <%= render 'flash' %>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h1>Contact Me!</h1>
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" required>
+        </div>
+        <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required>
+        </div>
+        <div class="col-md-8">
+            <label for="emailInfo" class="form-label">Email</label>
+            <input type="email" class="form-control" id="emailInfo" required>
+        </div>
+        <div class="col-md-4">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="+1 (417) 547-2536">
+        </div>
+        <div class="col-md-12">
+            <label for="comments" class="form-label">Comment</label>
+            <textarea class="form-control" id="comments" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

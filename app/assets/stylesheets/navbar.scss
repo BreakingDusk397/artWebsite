@@ -1,0 +1,28 @@
+html,
+body {
+  height: 100%;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: white;
+}
+
+#C1 {
+    color: white;
+}
+  
+.navbar {
+    margin-bottom: 1px;
+    background-color:rgba(96, 204, 96, 1);
+}
+
+.navbar:hover {
+      background-color: rgb(10, 65, 10);
+}
