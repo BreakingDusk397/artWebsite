@@ -9,6 +9,13 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+form.row.g-3 {
+  display: flex;
+  justify-content: space-between; 
+}
+
+
+
 .page-header {
     margin-top: 4rem;
     color: rgb(0, 0, 0);

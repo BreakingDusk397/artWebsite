@@ -1,3 +1,8 @@
+<%
+=begin %>
+
+#TODO: recreate the bottom html contact form into embedded ruby
+
 <div class="container">
 <%= form_for @contact, url: contact_index_path, remote: true do |f| %>
     <div class="row g-3">
@@ -6,8 +11,8 @@
         <%= f.text_field  :name, required: true, class: "contact-form-text-area" %>
     </div>
     <div class="col-md-6">
-        <%= f.label :email %>
-        <%= f.text_field :email, required: true, class: "contact-form-text-area" %>
+        <%= f.label :emails %>
+        <%= f.text_field :emails, required: true, class: "contact-form-text-area" %>
         </div>
       <%= f.label :message %>
       <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area",
@@ -28,24 +33,64 @@
 </div>
 
 
+<%
+=end %>
+
+<div class="container">
+    <h1>Contact Me!</h1>
+        <form class="row g-3">
+        <%= form_for @contact, url: contact_index_path, remote: true do |f| %>
+            <div class="col-md-6">
+                <%= f.label :first_name %>
+                <%= f.text_field :first_names, required: true, class: "contact-form-text-area" %>
+            </div>
+            <div class="col-md-6">
+                <%= f.label :last_name %>
+                <%= f.text_field :last_names, required: true, class: "contact-form-text-area" %>
+            </div>
+            <div class="col-md-8">
+                <%= f.label :email %>
+                <%= f.text_field :emails, required: true, class: "contact-form-text-area" %>
+            </div>
+            <div class="col-md-4">
+                <%= f.label :phone_number %>
+                <%= f.text_field :phone_numbers, class: "contact-form-text-area",
+                        placeholder: "+1 (417) 547 2536" %>
+            </div>
+            <div class="col-md-12">
+                <%= f.label :message %>
+                <%= f.text_area :comments, rows: 4, cols: 40, required: true, class: "contact-form-text-area",
+                        placeholder: "Send me a message!" %>
+            </div>
+            <%= f.submit "Send Message", class: "btn btn-primary" %>        
+        <% end %>
+        </form>
+
+    <div class= "col-md-6" id="flash-message">
+        <%= render "flash" %>
+    </div>
+</div>
+
+<%
+=begin %>
 
 <div class="container">
     <h1>Contact Me!</h1>
     <form class="row g-3">
         <div class="col-md-6">
-            <label for="firstName" class="form-label">First Name</label>
+            <label for="first_names" class="form-label">First Name</label>
             <input type="text" class="form-control" id="firstName" required>
         </div>
         <div class="col-md-6">
-            <label for="lastName" class="form-label">Last Name</label>
+            <label for="last_names" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="lastName" required>
         </div>
         <div class="col-md-8">
-            <label for="emailInfo" class="form-label">Email</label>
-            <input type="email" class="form-control" id="emailInfo" required>
+            <label for="emails" class="form-label">Email</label>
+            <input type="emails" class="form-control" id="emailInfo" required>
         </div>
         <div class="col-md-4">
-            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <label for="phone_numbers" class="form-label">Phone Number</label>
             <input type="text" class="form-control" id="phoneNumber" placeholder="+1 (417) 547-2536">
         </div>
         <div class="col-md-12">
@@ -55,3 +100,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<%
+=end %>
