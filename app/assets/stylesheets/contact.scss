@@ -9,15 +9,52 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-form.row.g-3 {
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  padding: 0; 
+  margin: 0;
+}
+
+div#contact{
   display: flex;
-  justify-content: space-between; 
+  justify-content: center;
+  align-items: center;
+}
+
+div.container {
+  padding: 1em; 
+  margin: 1em;
+  display: block;
+  align-items: center;
+  justify-content: center; 
+}
+
+
+form.row.g-3 {
+  display: block flex;
+  align-items: center;
+  justify-content: center; 
+  
+}
+
+input, label {
+  display: block;
+  justify-content: center; 
+}
+
+textarea {
+  overflow: auto;
 }
 
 
 
 .page-header {
-    margin-top: 4rem;
+    margin-top: 2rem;
     color: rgb(0, 0, 0);
 }
   
