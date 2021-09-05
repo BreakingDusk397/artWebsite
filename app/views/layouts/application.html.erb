@@ -13,6 +13,8 @@
   <header>
     <%= render 'layouts/navigation' %>
     <%= stylesheet_link_tag 'navbar.css' %>
+    
+    <p class="alert"> <%= render "contact/flash" %> </p>
   </header>
   <%= yield %>
   <footer>

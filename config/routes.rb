@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
   root "welcome#index"
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
 
   resources :contact, only: [:index, :new, :create]
 
