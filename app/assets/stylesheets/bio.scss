@@ -9,7 +9,14 @@ body {
 }
 
 .page-header {
-    margin-top: 4rem;
+    margin-top: 1rem;
     color: rgb(0, 0, 0);
 }
-  
+
+div.container {
+  padding: 1rem; 
+  margin: 1rem;
+  display: block;
+  align-items: center;
+  justify-content: center; 
+}
