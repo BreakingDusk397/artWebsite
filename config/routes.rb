@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get "/bio/:bio" => "bio#index"
     resources :bio
+
+  get "/devise/:sessions" => "sessions#index"
+    resources :devise
   
 
   get "/contact/:contact" => "contact#index"
