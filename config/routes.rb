@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :contact, only: [:index, :new, :create]
-
+  resources :users
+  resources :users
   
   get "/portfolio/:portfolio" => "portfolio#index"
     resources :portfolio
@@ -13,4 +14,8 @@ Rails.application.routes.draw do
   
 
   get "/contact/:contact" => "contact#index"
+  get '/signup', to: 'users#new'
+  get '/login', to: 'users#login'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end  
