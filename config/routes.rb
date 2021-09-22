@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pictures
   root "welcome#index"
 
   resources :contact, only: [:index, :new, :create]
