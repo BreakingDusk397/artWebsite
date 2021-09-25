@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_014431) do
+ActiveRecord::Schema.define(version: 2021_09_25_224314) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 2021_09_21_014431) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "status"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "price_cents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -47,6 +60,11 @@ ActiveRecord::Schema.define(version: 2021_09_21_014431) do
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
+    t.string "stripe_product_id"
+    t.string "stripe_price_id"
+    t.string "currency", default: "usd"
+    t.integer "sales_count", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_09_21_014431) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.string "remember_digest"
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

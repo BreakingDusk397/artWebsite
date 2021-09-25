@@ -1,6 +1,18 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: %i[ show edit update destroy ]
 
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to products_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to products_path
+  end
+
   # GET /pictures or /pictures.json
   def index
     @pictures = Picture.all
@@ -64,6 +76,6 @@ class PicturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def picture_params
-      params.require(:picture).permit(:title, :description, :date, :location, :image)
+      params.require(:picture).permit(:title, :description, :date, :location, :image, :price, :currency)
     end
 end

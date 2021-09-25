@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
+    has_many :order
+    attr_accessor :remember_token
 
     before_save { self.email = email.downcase }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -41,4 +42,10 @@ class User < ApplicationRecord
     def forget
         update_attribute(:remember_digest, nil)
     end
+
+    after_create do
+        customer = Stripe::Customer.create(email: email)
+        update(stripe_customer_id: user.id)
+    end
+
 end
