@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   post "orders/create", to: "orders#create"
   resources :webhooks, only: [:create]
   get "success", to: "orders#success"
   get "cancel", to: "orders#cancel"
+
 
   post "pictures/add_to_cart/:id", to: "pictures#add_to_cart", as: "add_to_cart"
   delete "pictures/remove_from_cart/:id", to: "pictures#remove_from_cart", as: "remove_from_cart"
@@ -16,9 +18,9 @@ Rails.application.routes.draw do
 
   resources :pages
   resources :users
-
   get '/signup', to: 'users#new'
   get '/login', to: 'users#login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
 end  

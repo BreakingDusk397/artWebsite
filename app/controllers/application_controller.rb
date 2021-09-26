@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
     include SessionsHelper
 
     before_action :initialize_cart
@@ -17,4 +18,5 @@ class ApplicationController < ActionController::Base
         # Product.where(id: [1, 2, 3]) => 1, 2
         @cart = Picture.where(id: session[:cart])
     end
+
 end

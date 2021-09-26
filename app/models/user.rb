@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
     has_many :order
     attr_accessor :remember_token
 
