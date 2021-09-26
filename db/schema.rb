@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_09_25_224314) do
-
+ActiveRecord::Schema.define(version: 2021_09_26_050538) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,7 +39,6 @@ ActiveRecord::Schema.define(version: 2021_09_25_224314) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
-
 
   create_table "orders", force: :cascade do |t|
     t.integer "product_id"
@@ -79,9 +76,11 @@ ActiveRecord::Schema.define(version: 2021_09_25_224314) do
     t.boolean "admin", default: false
     t.string "remember_digest"
     t.string "stripe_customer_id"
+    t.string "shipping_address"
+    t.string "billing_address"
+    t.integer "price"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
-
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
