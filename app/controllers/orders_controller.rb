@@ -36,6 +36,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def cancel
+    
+  end
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

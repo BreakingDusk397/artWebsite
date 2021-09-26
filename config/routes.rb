@@ -7,21 +7,16 @@ Rails.application.routes.draw do
   post "pictures/add_to_cart/:id", to: "pictures#add_to_cart", as: "add_to_cart"
   delete "pictures/remove_from_cart/:id", to: "pictures#remove_from_cart", as: "remove_from_cart"
   resources :pictures
-  root "welcome#index"
+  root "pages#home"
+  get "home", to: "pages#home"
+  get "bio", to: "pages#bio"
+  get "portfolio", to: "pages#portfolio"
+  get "contact", to: "pages#contact"
+  post "contact", to: "pages#create"
 
-  resources :contact, only: [:index, :new, :create]
+  resources :pages
   resources :users
 
-  
-  get "/portfolio/:portfolio" => "portfolio#index"
-    resources :portfolio
-  
-
-  get "/bio/:bio" => "bio#index"
-    resources :bio
-  
-
-  get "/contact/:contact" => "contact#index"
   get '/signup', to: 'users#new'
   get '/login', to: 'users#login'
   post '/login', to: 'sessions#create'
