@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: %i[ show edit update destroy ]
+  before_action :admin_user, only: [ :destroy :create :update :index ]
+  before_action :logged_in_user, only: [ :add_to_cart :remove_from_cart ]
 
   def add_to_cart
     id = params[:id].to_i
