@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title>Brower Designs</title>
+    <title><%= yield(:title) %> | Brower Designs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,16 +12,33 @@
   </head>
 
   <header>
-    <%= render 'layouts/navigation' %>
+    <% if logged_in? %>
+      <%= render 'layouts/navigation' %>
+    <% else %>
+      <%= render 'layouts/navigation2' %>
+    <% end %>
+
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>">
+      <%=message %>
+    </div>
+    <% end %>
+
     <%= stylesheet_link_tag 'navbar.css' %>
     
     <p class="alert"> <%= render "contact/flash" %> </p>
   </header>
-  <%= yield %>
+  
+  <div class="application-container">
+    <body>
+      <%= yield %>
+    </body>
+  </div>
+  
   <footer>
     <%= render 'layouts/footer' %>
     <%= stylesheet_link_tag 'footer.css' %>
-    
   </footer>
+
 </html>
 
