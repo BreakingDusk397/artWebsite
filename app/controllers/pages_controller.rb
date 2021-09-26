@@ -32,6 +32,6 @@ class PagesController < ApplicationController
     private
 
     def pages_params
-      params.require(:contact).permit(:name, :email, :phone_number, :message)
+      params.permit(:name, :email, :phone_number, :message, :contact)
     end
 end
