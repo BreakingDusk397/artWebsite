@@ -27,11 +27,18 @@ class WebhooksController < ApplicationController
                 session = event.data.object
                 session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
                 session_with_expand.line_items.data.each do |line_item|
-                    product = Product.find_by(stripe_product_id: line_item.price.product)
-                    product.increment!(:sales_count)
+                    picture = Picture.find_by(stripe_product_id: line_item.price.picture)
+                    picture.increment!(:sales_count)
+                    order = Order.new(order_params)
             end
         end
 
         render json: { message: 'success' }
     end
+
+    private
+    def order_params
+        params.require(:order).permit(:product_id, :user_id, :status, :token, :charge_id, :error_message, :customer_id, :price_cents)
+    end
+
 end

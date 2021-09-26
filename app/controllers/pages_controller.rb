@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def home
   end
 
@@ -9,11 +10,11 @@ class PagesController < ApplicationController
   end
 
   def contact
-    @contact = Contact.new(params[:home])
+    @contact = Contact.new(pages_params)
   end
 
     def create
-      @contact = Contact.new(params[:home])
+      @contact = Contact.new(pages_params)
       @contact.request = request
       respond_to do |format|
         if @contact.deliver
@@ -26,5 +27,11 @@ class PagesController < ApplicationController
           format.js   { flash.now[:error] = @message = "Message did not send." }
         end
       end
+    end
+
+    private
+
+    def pages_params
+      params.require(:contact).permit(:name, :email, :phone_number, :message)
     end
 end
