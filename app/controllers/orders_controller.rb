@@ -1,19 +1,21 @@
 class OrdersController < ApplicationController
 
-  before_action :order_amount?
-
   def create
     if @cart.pluck(:currency).uniq.length > 1
       redirect_to pictures_path, alert: "You can not select pictures with different currencies in one checkout"
     else
       @session = Stripe::Checkout::Session.create({
         customer: current_user.stripe_customer_id,
+        billing_address_collection: 'required',
+        shipping_address_collection: {
+        allowed_countries: ['US', 'CA']},
         payment_method_types: ['card'],
         line_items: @cart.collect { |item| item.to_builder.attributes! },
         allow_promotion_codes: true,
         mode: 'payment',
         success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
         cancel_url: cancel_url,
+        automatic_tax: {enabled: true},
       })
       respond_to do |format|
         format.js
@@ -39,10 +41,5 @@ class OrdersController < ApplicationController
     flash[:error] = e.message
     redirect_to new_charge_path
   end
-
-  private
-    def order_amount?
-      @amount = 0
-    end
 
 end
