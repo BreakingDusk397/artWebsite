@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
     enum status: { pending: 0, failed: 1, paid: 2 }
     belongs_to :user
-    belongs_to :order
 
     def self.create_customer(email: email, stripe_token: stripe_token)
         Stripe::Customer.create(

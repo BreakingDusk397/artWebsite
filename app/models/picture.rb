@@ -14,7 +14,7 @@ class Picture < ApplicationRecord
 
 
     after_create do
-        product = Stripe::Product.create(name: name)
+        product = Stripe::Product.create(name: :title)
         price = Stripe::Price.create(product: picture, unit_amount: self.price, currency: self.currency)
         update(stripe_picture_id: picture.id, stripe_price_id: price.id)
     end

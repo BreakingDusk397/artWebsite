@@ -5,12 +5,15 @@
         <span class="fs-4">Brower Designs</span>
       </a>
 
+
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="http://localhost:3000" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="http://localhost:3000/portfolio" class="nav-link">Portfolio</a></li>
+        <li><%= link_to root_path, class: "nav-link" do%> <%= icon("house", class: "house-nav-link") %> <% end %></li>
+        <li><%= link_to portfolio_path, class: "nav-link" do%> <%= icon("grid-3x3-gap-fill", class: "images-nav-link") %> <% end %></li>
         <li class="nav-item"><a href="http://localhost:3000/bio" class="nav-link">Bio</a></li>
-        <li class="nav-item"><a href="http://localhost:3000/contact" class="nav-link">Contact</a></li>
-        <li class="nav-item"><a href=<%= logout_path %> class="nav-link">Logout</a></li>
+        <li><%= link_to contact_path, class: "nav-link" do%> <%= icon("calendar-plus", class: "contact-nav-link") %> <% end %></li>
+                <li><%= link_to logout_path, class: "nav-link" do%> <%= icon("box-arrow-right", class: "logout-nav-link") %> <% end %></li>
+        
+        
       </ul>
     </header>
-  </div>
+  </div

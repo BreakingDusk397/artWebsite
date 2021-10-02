@@ -10,6 +10,7 @@ import "channels"
 import 'jquery'
 import 'bootstrap'
 import '../javascripts/application'
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 
 

@@ -1,7 +1,13 @@
     <ul class="orders">
         <% @orders.each do |order| %>
             <li>
-
+                <%= order.product_id %>
+                <%= order.user_id %>
+                <%= order.status %>
+                <%= order.error_message %>
+                <%= order.customer_id %>
+                <%= order.price_cents %>
+                <%= order.created_at %>
             </li>
         <% end %>
     </ul>
