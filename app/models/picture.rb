@@ -14,6 +14,7 @@ class Picture < ApplicationRecord
 
 
     after_create do
+        Stripe.api_key = Rails.application.credentials.stripe[:dev_api_key]
         product = Stripe::Product.create(name: :title)
         price = Stripe::Price.create(product: picture, unit_amount: self.price, currency: self.currency)
         update(stripe_picture_id: picture.id, stripe_price_id: price.id)
