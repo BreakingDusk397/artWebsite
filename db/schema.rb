@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_050538) do
+ActiveRecord::Schema.define(version: 2021_10_04_011719) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_050538) do
     t.string "stripe_price_id"
     t.string "currency", default: "usd"
     t.integer "sales_count", default: 0, null: false
+    t.index ["title"], name: "index_pictures_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|

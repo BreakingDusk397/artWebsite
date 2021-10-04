@@ -3,7 +3,7 @@ class WebhooksController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def create
-        Stripe.api_key = Rails.application.credentials.stripe[:dev_api_key]
+        Stripe.api_key = Rails.application.credentials.dig(:stripe, :dev_private_key)
         payload = request.body.read
         sig_header = request.env['HTTP_STRIPE_SIGNATURE']
         event = nil

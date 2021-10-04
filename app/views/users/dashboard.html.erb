@@ -12,4 +12,17 @@
         <% end %>
     </ul>
 
+<ul class="pictures">
+        <% @pictures.each do |picture| %>
+            <li>
+                <%= picture.title %>
+                <%= picture.description %>
+                <%= picture.date %>
+                <%= picture.location %>
+                <%= picture.price %>
+                <%= picture.created_at %>
+            </li>
+        <% end %>
+    </ul>
+
 <%= link_to "New Picture", new_picture_path %>

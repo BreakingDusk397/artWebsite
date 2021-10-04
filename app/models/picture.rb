@@ -1,5 +1,8 @@
 class Picture < ApplicationRecord
     has_one_attached :image
+    validates :title, presence: true, length: { maximum: 50 }, uniqueness: true
+    validates :description, presence: true, length: { maximum: 500 }, uniqueness: true
+    validates :location, length: { maximum: 50 }
 
     has_many :order
 
@@ -9,15 +12,6 @@ class Picture < ApplicationRecord
         picture.price stripe_price_id
         picture.quantity 1
         end
-    end
-
-
-
-    after_create do
-        Stripe.api_key = Rails.application.credentials.stripe[:dev_api_key]
-        product = Stripe::Product.create(name: :title)
-        price = Stripe::Price.create(product: picture, unit_amount: self.price, currency: self.currency)
-        update(stripe_picture_id: picture.id, stripe_price_id: price.id)
     end
 
 end

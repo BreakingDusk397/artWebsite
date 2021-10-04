@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
       redirect_to pictures_path, alert: "You can not select pictures with different currencies in one checkout"
     else
       @session = Stripe::Checkout::Session.create({
-        Stripe.api_key = Rails.application.credentials.stripe[:dev_api_key]
+        api_key: Rails.application.credentials.dig(:stripe, :dev_private_key)
         customer: current_user.stripe_customer_id,
         billing_address_collection: 'required',
         shipping_address_collection: {
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   def success
     if params[:session_id].present? 
       # session.delete(:cart)
-      Stripe.api_key = Rails.application.credentials.stripe[:dev_api_key]
+      Stripe.api_key = Rails.application.credentials.dig(:stripe, :dev_private_key)
       session[:cart] = [] # empty cart = empty array
       @session_with_expand = Stripe::Checkout::Session.retrieve({ id: params[:session_id], expand: ["line_items"]})
       @session_with_expand.line_items.data.each do |line_item|

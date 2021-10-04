@@ -36,6 +36,15 @@ class PicturesController < ApplicationController
   # POST /pictures or /pictures.json
   def create
     @picture = Picture.new(picture_params)
+    Stripe.api_key = Rails.application.credentials.dig(:stripe, :dev_private_key)
+        product = Stripe::Product.create({name: params[:picture][:title], 
+                                          description: params[:picture][:description], 
+                                          #images: params[:picture][:image], 
+                                          shippable: true})
+        price = Stripe::Price.create({product: product.id, 
+                                      unit_amount: @picture.price, 
+                                      currency: @picture.currency})
+        Picture.update(stripe_product_id: product.id, stripe_price_id: price.id)
 
     respond_to do |format|
       if @picture.save
