@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     before_action :admin_user, only: %i[ destroy index ]
 
     def dashboard
-      # @users = User.all
-      # @orders = Orders.all
+      @pictures = Picture.all
+      @orders = Order.all
     end
 
     # GET /users or /users.json

@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: %i[ show edit update destroy ]
-  before_action :admin_user, only: %i[ destroy :create update index ]
+  
+  #before_action :admin_user, only: %i[ destroy create update index ]
   before_action :logged_in_user, only: %i[ add_to_cart remove_from_cart ]
 
   def add_to_cart
@@ -22,6 +22,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1 or /pictures/1.json
   def show
+    @picture = Picture.find(params[:id])
   end
 
   # GET /pictures/new

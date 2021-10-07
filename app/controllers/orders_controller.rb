@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def create
-    if @carurrency).uniq.length > 1
+    if @currency).uniq.length > 1
       redirect_to pictures_path, alert: "You can not select pictures with different currencies in one checkout"
     else
       @session = Stripe::Checkout::Session.create({
